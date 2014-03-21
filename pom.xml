@@ -2,13 +2,13 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.dantwining.whitespace</groupId>
+	<groupId>com.github.dantwining.whitespace-maven-plugin</groupId>
 	<artifactId>whitespace-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>whitespace-maven-plugin Maven Mojo</name>
 	<description>Maven plugin for stripping trailing whitespace errors from java source code</description>
-	<url>https://github.com/dantwining/whitespace</url>
+	<url>https://github.com/dantwining/whitespace-maven-plugin</url>
 
 	<licenses>
 		<license>
@@ -19,9 +19,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git://github.com/dantwining/whitespace.git</connection>
-		<developerConnection>scm:git:git@github.com:dantwining/whitespace.git</developerConnection>
-		<url>https://github.com/dantwining/whitespace</url>
+		<connection>scm:git:git://github.com/dantwining/whitespace-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:dantwining/whitespace-maven-plugin.git</developerConnection>
+		<url>https://github.com/dantwining/whitespace-maven-plugin</url>
 	</scm>
 
 	<developers>
@@ -31,6 +31,10 @@
 			<email>twitter@dantwining</email>
 		</developer>
 	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<build>
 		<plugins>
