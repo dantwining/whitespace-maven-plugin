@@ -20,6 +20,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,61 +29,66 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Goal which trims whitespace from all src/.../*.java files.
+ * Goal which trims whitespace from all src/.../*.java and xml files.
  *
  * @goal trim
  * @phase process-sources
  */
 public class MyMojo
-		extends AbstractMojo {
-	/**
-	 * Location of the file.
-	 *
-	 * @parameter expression="${project.basedir}/src"
-	 * @required
-	 */
-	private File projectBasedir;
+        extends AbstractMojo {
+    /**
+     * Location of the file.
+     *
+     * @parameter expression="${project.basedir}/src"
+     * @required
+     */
+    private File projectBasedir;
 
-	public void execute()
-			throws MojoExecutionException {
-		File f = projectBasedir;
+    public void execute()
+            throws MojoExecutionException, MojoFailureException {
+        File f = projectBasedir;
 
-		String[] extensions = {"java", "xml"};
-		Collection<File> matchingFiles = FileUtils.listFiles(f, extensions, true);
+        String[] extensions = {"java", "xml"};
+        Collection<File> matchingFiles = FileUtils.listFiles(f, extensions, true);
 
-		for (File matchingFile : matchingFiles) {
-			System.out.println("matching file: " + matchingFile.getAbsolutePath());
+        for (File matchingFile : matchingFiles) {
+            System.out.println("matching file: " + matchingFile.getAbsolutePath());
 
-			List<String> lines;
-			try {
-				lines = FileUtils.readLines(matchingFile, "UTF-8");
-			} catch (IOException e) {
-				throw new MojoExecutionException("Failed to read lines from " + matchingFile.getAbsolutePath(), e);
-			}
+            List<String> lines;
+            try {
+                lines = FileUtils.readLines(matchingFile, "UTF-8");
+            } catch (IOException e) {
+                throw new MojoExecutionException("Failed to read lines from " + matchingFile.getAbsolutePath(), e);
+            }
 
-			Boolean isFileModified = false;
-			List<String> trimmedLines = new ArrayList<>(lines.size());
-			for (String line : lines) {
+            Boolean isFileModified = false;
+            List<String> trimmedLines = new ArrayList<String>(lines.size());
+            for (String line : lines) {
 
-				String trimmedLine = StringUtils.stripEnd(line, null);
+                String trimmedLine = StringUtils.stripEnd(line, null);
 
-				Boolean isLineModified = (trimmedLine.equals(line));
-				isFileModified = (isFileModified || isLineModified);
+                Boolean isLineModified = (trimmedLine.equals(line));
+                isFileModified = (isFileModified || isLineModified);
 
-				trimmedLines.add(trimmedLine);
+                trimmedLines.add(trimmedLine);
 
-			}
+            }
 
-			if (isFileModified) {
+            if (isFileModified) {
 
-				try {
-					FileUtils.writeLines(matchingFile, "UTF-8", trimmedLines);
-				} catch (IOException e) {
-					throw new MojoExecutionException("Failed to write lines to " + matchingFile.getAbsolutePath(), e);
-				}
+                // TODO: set this flag based on whether the "trim" or "verify" goal is called.
+                boolean verify = false;
+                if (verify) {
+                    throw new MojoFailureException("Trailing whitespace found in " + matchingFile.getAbsolutePath());
+                }
+                try {
+                    FileUtils.writeLines(matchingFile, "UTF-8", trimmedLines);
+                } catch (IOException e) {
+                    throw new MojoExecutionException("Failed to write lines to " + matchingFile.getAbsolutePath(), e);
+                }
 
-			}
-		}
+            }
+        }
 
-	}
+    }
 }
