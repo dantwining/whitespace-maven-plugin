@@ -19,6 +19,7 @@ package com.github.dantwining.whitespace;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.logging.Log;
 
 import java.io.File;
 
@@ -43,7 +44,9 @@ public class TrimMojo
 
 		boolean verify = false;
 
-		WhitespaceUtils.detectWhitespace(verify, projectBasedir);
+        Log mavenLog = getLog();
+
+        WhitespaceUtils.detectWhitespace(verify, projectBasedir, mavenLog);
 
     }
 
