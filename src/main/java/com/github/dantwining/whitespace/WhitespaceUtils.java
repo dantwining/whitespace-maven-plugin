@@ -20,13 +20,14 @@ public class WhitespaceUtils {
 
     public static void detectWhitespace(boolean verify, File searchBaseDirectory, Log mavenLog) throws MojoExecutionException, MojoFailureException {
 
+		if (!searchBaseDirectory.isDirectory()) {
+			mavenLog.debug("Skipping non-existent directory: " + searchBaseDirectory.getAbsolutePath());
+			return;
+		}
+
 		String[] extensions = {"java", "xml"};
 		Collection<File> matchingFiles = FileUtils.listFiles(searchBaseDirectory, extensions, true);
 
-        if (!searchBaseDirectory.isDirectory()) {
-            mavenLog.debug("Skipping non-existent directory: " + searchBaseDirectory.getAbsolutePath());
-            return;
-        }
         for (File matchingFile : matchingFiles) {
             mavenLog.debug("Reading file: " + matchingFile.getAbsolutePath());
 
