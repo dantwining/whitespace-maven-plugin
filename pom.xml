@@ -5,7 +5,7 @@
 	<groupId>com.github.dantwining.whitespace-maven-plugin</groupId>
 	<artifactId>whitespace-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<name>whitespace-maven-plugin Maven Mojo</name>
 	<description>Maven plugin for stripping trailing whitespace errors from java source code</description>
 	<url>https://github.com/dantwining/whitespace-maven-plugin</url>
