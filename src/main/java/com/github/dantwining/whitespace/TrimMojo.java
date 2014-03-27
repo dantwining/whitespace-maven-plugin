@@ -30,24 +30,24 @@ import java.io.File;
  * @phase process-sources
  */
 public class TrimMojo
-        extends AbstractMojo {
-    /**
-     * Location of the file.
-     *
-     * @parameter expression="${project.basedir}/src"
-     * @required
-     */
-    private File projectBasedir;
+		extends AbstractMojo {
+	/**
+	 * Location of the file.
+	 *
+	 * @parameter expression="${project.basedir}/src"
+	 * @required
+	 */
+	private File projectBasedir;
 
-    public void execute()
+	public void execute()
 			throws MojoExecutionException, MojoFailureException {
 
 		boolean verify = false;
 
-        Log mavenLog = getLog();
+		Log mavenLog = getLog();
 
-        WhitespaceUtils.detectWhitespace(verify, projectBasedir, mavenLog);
+		WhitespaceUtils.detectWhitespace(verify, projectBasedir, mavenLog);
 
-    }
+	}
 
 }

@@ -18,7 +18,7 @@ public class WhitespaceUtils {
 		throw new AssertionError("Utility class: should never be instantiated");
 	}
 
-    public static void detectWhitespace(boolean verify, File searchBaseDirectory, Log mavenLog) throws MojoExecutionException, MojoFailureException {
+	public static void detectWhitespace(boolean verify, File searchBaseDirectory, Log mavenLog) throws MojoExecutionException, MojoFailureException {
 
 		if (!searchBaseDirectory.isDirectory()) {
 			mavenLog.debug("Skipping non-existent directory: " + searchBaseDirectory.getAbsolutePath());
@@ -28,8 +28,8 @@ public class WhitespaceUtils {
 		String[] extensions = {"java", "xml"};
 		Collection<File> matchingFiles = FileUtils.listFiles(searchBaseDirectory, extensions, true);
 
-        for (File matchingFile : matchingFiles) {
-            mavenLog.debug("Reading file: " + matchingFile.getAbsolutePath());
+		for (File matchingFile : matchingFiles) {
+			mavenLog.debug("Reading file: " + matchingFile.getAbsolutePath());
 
 			List<String> lines;
 			try {
