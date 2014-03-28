@@ -43,6 +43,7 @@ public class WhitespaceUtils {
 			int lineNumber = 0;
 
 			for (String line : lines) {
+
 				if(mavenLog.isDebugEnabled()){
 					lineNumber++;
 				}
@@ -50,16 +51,16 @@ public class WhitespaceUtils {
 				String trimmedLine = StringUtils.stripEnd(line, null);
 
 				Boolean isLineModified = (!trimmedLine.equals(line));
-				isFileModified = (isFileModified || isLineModified);
 
 				if(mavenLog.isDebugEnabled()){
 					if(isLineModified){
-						mavenLog.debug("line " + lineNumber + " modified");
+						mavenLog.debug("Whitespace found on line " + lineNumber);
 					}
 				}
 
 				trimmedLines.add(trimmedLine);
 
+				isFileModified = (isFileModified || isLineModified);
 			}
 
 			if (isFileModified) {
