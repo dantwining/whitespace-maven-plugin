@@ -40,12 +40,23 @@ public class WhitespaceUtils {
 
 			Boolean isFileModified = false;
 			List<String> trimmedLines = new ArrayList<String>(lines.size());
+			int lineNumber = 0;
+
 			for (String line : lines) {
+				if(mavenLog.isDebugEnabled()){
+					lineNumber++;
+				}
 
 				String trimmedLine = StringUtils.stripEnd(line, null);
 
-				Boolean isLineModified = (trimmedLine.equals(line));
+				Boolean isLineModified = (!trimmedLine.equals(line));
 				isFileModified = (isFileModified || isLineModified);
+
+				if(mavenLog.isDebugEnabled()){
+					if(isLineModified){
+						mavenLog.debug("line " + lineNumber + " modified");
+					}
+				}
 
 				trimmedLines.add(trimmedLine);
 
