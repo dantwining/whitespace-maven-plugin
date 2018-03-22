@@ -1,1 +1,14 @@
 language: java
+## Get the project version
+before_deploy:
+    - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+    - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+deploy:
+  provider: releases
+  api_key:
+    secure: qof/VBvPfgqUckVTi7TDbzfSbjvXJGBou9nQfafjuv7pnDOcjYSdsSZyT7YqFNcphA+mT7ucBp0z5vfCyK3BsMcRewHq1tn5q42WX210xuilYHDboR2hgOPJXeUrwJwbfdnAAGPkpyzw698URZpXC9TJhAy8KOhWj3oCaJn1HN7b9DP9QeNW26LHYw+OVd025b3uIjSqEPBuUClNdfREU2wqRXoBNL1D+VjEsDf/FLNvL0JW5uZAH+VqkKvZnDpeKipBkp/Dy41x56DN2jYO4UiG8n3iqqHUizVtt/32YqNT50q/lNSqk+m0cD/9ozgkI6d9aWytkpeTGDzgo7AHqBIiP1tKRnaCc2/ZcW+qxQXY6bkBXrAkDLyQIZ4GkNIAymNmagXg6khJG2YF6dKj0jtBOlAv8T/8Lu6DZEzZlqSWQKLTHBgY2BmdiPcPmdP0ZvSU2tazc04OADC3uuvXYpy0jRU1o6aamFTAyDDtRDM9UfdGNid+L/XGDSIXW8wdcKjb5MhEFe8hSaJH2wquL6xqdKCjJwCV+55QfO+qV602Mp3zKPKn9R96la9WUmGhvz8Wb27qmfSCqqV6pRJyGU01YU3cRUnJd8RDOLInH7OSf67ThH0YDENeETlDASm9O0DD0XvAVavFZ+++gGuVmAL55hkxC1y6jU5kPo9exhM=
+  file: 'target/whitespace-maven-plugin-$project_version.jar'
+  skip_cleanup: true
+  on:
+    repo: dantwining/whitespace-maven-plugin
+  name: $project_version
