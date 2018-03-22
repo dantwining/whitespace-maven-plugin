@@ -34,7 +34,7 @@ public class VerifyMojo
 	/**
 	 * Location of the file.
 	 *
-	 * @parameter expression="${project.basedir}/src"
+	 * @parameter project.basedir="${project.basedir}/src"
 	 * @required
 	 */
 	private File projectBasedir;
