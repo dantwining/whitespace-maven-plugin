@@ -55,18 +55,18 @@
 			<id>release</id>
 			<build>
 
-        <plugins>
-        <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
-          <extensions>true</extensions>
-          <configuration>
-            <serverId>ossrh</serverId>
-            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-          </configuration>
-        </plugin>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -74,31 +74,31 @@
 						<version>2.9.1</version>
 						  <configuration>
 							<tags>
-							<tag>
-								<name>goal</name>
-								<placement>a</placement>
-								<head>Goal:</head>
-							</tag>
-							<tag>
-								<name>phase</name>
-								<placement>a</placement>
-								<head>Phase:</head>
-							</tag>
-							<tag>
-								<name>threadSafe</name>
-								<placement>a</placement>
-								<head>Thread Safe:</head>
-							</tag>
-							<tag>
-								<name>requiresDependencyResolution</name>
-								<placement>a</placement>
-								<head>Requires Dependency Resolution:</head>
-							</tag>
-							<tag>
-								<name>requiresProject</name>
-								<placement>a</placement>
-								<head>Requires Project:</head>
-							</tag>
+                                <tag>
+                                    <name>goal</name>
+                                    <placement>a</placement>
+                                    <head>Goal:</head>
+                                </tag>
+                                <tag>
+                                    <name>phase</name>
+                                    <placement>a</placement>
+                                    <head>Phase:</head>
+                                </tag>
+                                <tag>
+                                    <name>threadSafe</name>
+                                    <placement>a</placement>
+                                    <head>Thread Safe:</head>
+                                </tag>
+                                <tag>
+                                    <name>requiresDependencyResolution</name>
+                                    <placement>a</placement>
+                                    <head>Requires Dependency Resolution:</head>
+                                </tag>
+                                <tag>
+                                    <name>requiresProject</name>
+                                    <placement>a</placement>
+                                    <head>Requires Project:</head>
+                                </tag>
 							</tags>
 						</configuration>
 						<executions>
