@@ -20,23 +20,22 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
 
 /**
  * Goal which detects whitespace in all src/.../*.java and xml files.
- *
- * @goal verify
- * @phase process-sources
  */
+ @Mojo(name = "verify", defaultPhase = LifecyclePhase.PROCESS_SOURCES, threadSafe = true)
 public class VerifyMojo
 		extends AbstractMojo {
 	/**
 	 * Location of the file.
-	 *
-	 * @parameter project.basedir="${project.basedir}/src"
-	 * @required
 	 */
+    @Parameter(defaultValue="${project.basedir}/src", required = true)
 	private File projectBasedir;
 
 	public void execute()
